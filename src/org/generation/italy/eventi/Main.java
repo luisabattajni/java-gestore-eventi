@@ -81,12 +81,15 @@ public class Main {
 			if (cancel.equals("s")) {
 				System.out.println("Quanti posti si desidera disdire? ");
 				int disd = scan.nextInt();
-				System.out.println(evento.disdici(disd));
-				//inteso come disdette sui posti prenotati prima, giusto?
-				postiPrenotati = postiPrenotati + evento.disdici(disd);
-				System.out.println("Numero di posti prenotati: " + postiPrenotati);
-				int postiDisponili = postiTot - postiPrenotati;
-				System.out.println("Numero di posti disponibili: " + postiDisponili);
+				if (disd <= postiPrenotati) {
+					System.out.println(evento.disdici(disd));
+					postiPrenotati = postiPrenotati + evento.disdici(disd);
+					System.out.println("Numero di posti prenotati: " + postiPrenotati);
+					int postiDisponili = postiTot - postiPrenotati;
+					System.out.println("Numero di posti disponibili: " + postiDisponili);
+				} else {
+					System.out.println("Non hai prenotato così tanti posti");
+					}
 			} else if (cancel.equals("n")) {
 				System.out.println("Operazione terminata");
 			} else {
