@@ -20,17 +20,12 @@ public class Evento {
 		if (postiTot > 0) {
 			this.postiTot = postiTot;
 		} else {
-			//errore
 			throw new Exception("Il numero dei posti totali non può essere un numero negativo.");
 		}
 		this.titolo = titolo;
-		//quindi tipo if data >= data now thisdata= data else throw error
-		//check support link biglietto?
-		this.data = data;
 		if (data.isAfter(LocalDate.now())) {
 			this.data = data;
 		} else {
-			//errore
 			throw new Exception("Questa data è già passata.");
 			//se/quando chiamo chiedere se devo fare un caso per equals/per il giorno stesso
 			//ma credo conti come passato?
