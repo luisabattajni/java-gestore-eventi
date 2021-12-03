@@ -81,9 +81,9 @@ public class Evento {
 
 	}
 	public int prenota(int n) throws Exception {
-		if (data.isAfter(LocalDate.now()) && postiPrenotati < postiTot) {
+		if (data.isAfter(LocalDate.now()) && n < postiTot) {
 				return postiPrenotati + n;
-			} else if (postiPrenotati > postiTot) {
+			} else if (n > postiTot) {
 			throw new Exception("Non ci sono così tanti posti disponibili.");
 		} else {
 			throw new Exception("Questa data è già passata.");

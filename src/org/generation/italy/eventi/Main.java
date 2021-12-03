@@ -51,6 +51,9 @@ public class Main {
 				int postiAgg = scan.nextInt();
 				System.out.println(evento.prenota(postiAgg));
 				postiPrenotati = evento.prenota(postiAgg);
+				System.out.println("Numero di posti prenotati: " + postiPrenotati);
+				int postiDisponili = postiTot - postiPrenotati;
+				System.out.println("Numero di posti disponibili: " + postiDisponili);
 
 			} else if (continua.equals("n")) {
 				System.out.println("Operazione terminata");
@@ -62,10 +65,10 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 
-		System.out.println("Numero di posti prenotati: " + postiPrenotati);
-		//non mi parte l'errore che dovrebbe dare se chiedo più posti del tot
-		int postiDisponili = postiTot - postiPrenotati;
-		System.out.println("Numero di posti disponibili: " + postiDisponili);
+//		System.out.println("Numero di posti prenotati: " + postiPrenotati);
+//		//non mi parte l'errore che dovrebbe dare se chiedo più posti del tot
+//		int postiDisponili = postiTot - postiPrenotati;
+//		System.out.println("Numero di posti disponibili: " + postiDisponili);
 		
 		
 		scan.nextLine();
@@ -79,6 +82,11 @@ public class Main {
 				System.out.println("Quanti posti si desidera disdire? ");
 				int disd = scan.nextInt();
 				System.out.println(evento.disdici(disd));
+				//inteso come disdette sui posti prenotati prima, giusto?
+				postiPrenotati = postiPrenotati + evento.disdici(disd);
+				System.out.println("Numero di posti prenotati: " + postiPrenotati);
+				int postiDisponili = postiTot - postiPrenotati;
+				System.out.println("Numero di posti disponibili: " + postiDisponili);
 			} else if (cancel.equals("n")) {
 				System.out.println("Operazione terminata");
 			} else {
@@ -89,8 +97,7 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 
-//		System.out.println("Numero di posti prenotati: " + postiPrenotati);
-//		System.out.println("Numero di posti disponibili: " + postiDisponili);
+
 
 		scan.close();
 	}
