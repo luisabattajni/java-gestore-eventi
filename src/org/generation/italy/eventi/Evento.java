@@ -2,7 +2,7 @@ package org.generation.italy.eventi;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-// formattazione per dopo
+
 public class Evento {
 	
 	
@@ -25,8 +25,7 @@ public class Evento {
 			this.data = data;
 		} else {
 			throw new Exception("Questa data è già passata.");
-			//se/quando chiamo chiedere se devo fare un caso per equals/per il giorno stesso
-			//ma credo conti come passato?
+
 		}
 		this.postiPrenotati = 0;	
 	}
@@ -59,17 +58,6 @@ public class Evento {
 	
 	//metodi public
 
-
-	
-	//okay avevo letto male la consegna rip, posso effettivamente metter boolean isValid 
-	//dato che l'ho visto solo ora correggo dopo
-	
-//	private boolean isValidData(LocalDate data) {
-//		return data.isAfter(LocalDate.now());
-//	}
-	
-
-	//prova? da controllare
 	public int prenota() throws Exception {
 		if (data.isAfter(LocalDate.now()) && postiPrenotati < postiTot) {
 			return ++postiPrenotati;
@@ -81,8 +69,9 @@ public class Evento {
 
 	}
 	public int prenota(int n) throws Exception {
-		if (data.isAfter(LocalDate.now()) && n < postiTot) {
-				return postiPrenotati + n;
+		if (data.isAfter(LocalDate.now()) && (n + postiPrenotati) < postiTot) {
+				postiPrenotati = postiPrenotati + n;
+				return postiPrenotati;
 			} else if (n > postiTot) {
 			throw new Exception("Non ci sono così tanti posti disponibili.");
 		} else {
@@ -104,8 +93,9 @@ public class Evento {
 	}
 	
 	public int disdici(int n) throws Exception {
-		if (data.isAfter(LocalDate.now()) && postiPrenotati == 0) {
-			return postiPrenotati - n;
+		if (data.isAfter(LocalDate.now()) && postiPrenotati > 0) {
+			postiPrenotati = postiPrenotati -  n;
+			return postiPrenotati;
 		} else if (postiPrenotati == 0) {
 			throw new Exception("Non ci sono prenotazioni.");
 		} else {
@@ -113,6 +103,8 @@ public class Evento {
 		}
 	
 	}
+	
+
 
 
 
